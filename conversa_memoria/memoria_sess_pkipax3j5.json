@@ -1,0 +1,18 @@
+[
+  {
+    "type": "human",
+    "content": "olá"
+  },
+  {
+    "type": "ai",
+    "content": "Olá! É um prazer conversar com você. Estou aqui para ajudá-lo a explorar novas oportunidades de desenvolvimento profissional e descobrir caminhos que possam levar a uma carreira mais gratificante.\n\nPara começar, posso perguntar sobre sua formação acadêmica? Qual é o seu nível de escolaridade atual? Você tem um diploma de graduação, pós-graduação ou está cursando algo atualmente?"
+  },
+  {
+    "type": "human",
+    "content": "você sabe alguma coisa sobre mim?"
+  },
+  {
+    "type": "ai",
+    "content": "Não, não sei nada sobre você além do que você está disposto a compartilhar comigo. Nossa conversa é um ponto de partida para que eu possa entender melhor suas necessidades e interesses profissionais.\n\nMas posso dizer que estou aqui para ouvir e ajudar, sem julgamentos ou preconceitos. Tudo o que você compartilhar comigo será tratado com confidencialidade e respeito.\n\nEntão, se você estiver pronto, podemos começar a conversar sobre sua formação acadêmica e experiência profissional. Qual é o seu nível de escolaridade atual?"
+  }
+]
