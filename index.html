@@ -188,17 +188,6 @@
         </div>
     </div>
     <script>
-        // Gerar ou recuperar o session_id único para o usuário
-        let sessionId = localStorage.getItem('sessionId');
-        if (!sessionId) {
-            sessionId = generateSessionId();
-            localStorage.setItem('sessionId', sessionId);
-        }
-
-        function generateSessionId() {
-            return 'sess_' + Math.random().toString(36).substr(2, 9);
-        }
-
         // Função para alternar a visibilidade da senha
         function togglePassword() {
             const passwordField = document.getElementById('password');
@@ -229,6 +218,8 @@
                     const data = await response.json();
 
                     if (data.sucesso) {
+                        // Armazena o user_id no localStorage
+                        localStorage.setItem('userId', data.user_id);
                         document.getElementById('loginPage').classList.add('hidden');
                         document.getElementById('chatbotPage').classList.remove('hidden');
                         document.getElementById('menuIcon').classList.remove('hidden');
@@ -246,11 +237,12 @@
 
         // Função para carregar mensagens anteriores
         async function loadPreviousMessages() {
+            const userId = localStorage.getItem('userId');
             try {
                 const response = await fetch("http://127.0.0.1:5000/conversa", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ session_id: sessionId })
+                    body: JSON.stringify({ user_id: userId })
                 });
                 const data = await response.json();
                 if (data.messages) {
@@ -271,6 +263,7 @@
         // Função para enviar mensagens para o chatbot
         async function sendMessage() {
             const userInput = document.getElementById('userInput').value;
+            const userId = localStorage.getItem('userId');
             if (userInput.trim() !== '') {
                 const userBubble = document.createElement('div');
                 userBubble.classList.add('chat-bubble', 'user');
@@ -282,7 +275,7 @@
                     const response = await fetch("http://127.0.0.1:5000/mensagem", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ mensagem: userInput, session_id: sessionId })
+                        body: JSON.stringify({ mensagem: userInput, user_id: userId })
                     });
                     const data = await response.json();
                     const botBubble = document.createElement('div');
@@ -315,10 +308,8 @@
             document.getElementById('loginPage').classList.remove('hidden');
             document.getElementById('sidebar').classList.remove('open');
             document.getElementById('menuIcon').classList.add('hidden');
-            localStorage.removeItem('sessionId');
+            localStorage.removeItem('userId');
             document.getElementById('chatContainer').innerHTML = '';
-            sessionId = generateSessionId();
-            localStorage.setItem('sessionId', sessionId);
         });
 
         // Função para alternar o menu lateral
