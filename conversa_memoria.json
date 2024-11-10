@@ -1,0 +1,74 @@
+[
+  {
+    "type": "ai",
+    "content": "Olá! Estou aqui para ajudá-lo a encontrar oportunidades de desenvolvimento profissional. Para começar, gostaria de saber um pouco mais sobre você.\n\nQual é o seu nível de escolaridade atual? Você tem graduação, pós-graduação ou está cursando alguma dessas opções?"
+  },
+  {
+    "type": "human",
+    "content": "meu nome é lucas"
+  },
+  {
+    "type": "ai",
+    "content": "Olá, Lucas! É um prazer conhecê-lo. Agora, vamos voltar às informações que preciso para ajudá-lo a encontrar oportunidades de desenvolvimento profissional.\n\nQual é o seu nível de escolaridade atual? Você tem graduação, pós-graduação ou está cursando alguma dessas opções?"
+  },
+  {
+    "type": "human",
+    "content": "tenho ensino médio completo"
+  },
+  {
+    "type": "ai",
+    "content": "Com ensino médio completo, você tem uma boa base para seguir em frente. Agora, gostaria de saber sobre sua experiência profissional atual.\n\nEm que área você trabalha atualmente e como você se sente em relação ao seu trabalho? Você está satisfeito com o que faz ou está procurando por uma mudança?"
+  },
+  {
+    "type": "ai",
+    "content": ""
+  },
+  {
+    "type": "human",
+    "content": "olá"
+  },
+  {
+    "type": "ai",
+    "content": "Olá novamente, Lucas! Você parece ter perdido o fio da conversa. Vamos voltar ao ponto onde paramos.\n\nEu havia perguntado sobre sua experiência profissional atual. Em que área você trabalha atualmente e como você se sente em relação ao seu trabalho? Você está satisfeito com o que faz ou está procurando por uma mudança?"
+  },
+  {
+    "type": "human",
+    "content": "eu trabalho de telemarketing"
+  },
+  {
+    "type": "ai",
+    "content": "Trabalhar em telemarketing pode ser um desafio, mas também é uma ótima oportunidade para desenvolver habilidades de comunicação e negociação.\n\nVocê está satisfeito com o seu trabalho em telemarketing ou está procurando por uma mudança de carreira ou uma oportunidade de crescimento profissional?\n\nAlém disso, qual é o seu objetivo profissional específico? Você gostaria de avançar na carreira em telemarketing ou está pensando em mudar de área?"
+  },
+  {
+    "type": "human",
+    "content": "eu não aguento mais o telemarketing"
+  },
+  {
+    "type": "ai",
+    "content": "Entendo, Lucas. Trabalhar em telemarketing pode ser estressante e desgastante, especialmente se você não se sentir realizado ou satisfeito com o trabalho.\n\nVamos pensar em outras opções. Qual é o seu objetivo profissional específico? Você gostaria de trabalhar em uma área específica, como tecnologia, saúde, educação ou outra?\n\nAlém disso, você gostaria de fazer cursos ou treinamentos para se qualificar em uma nova área? Quais são seus interesses e habilidades que você gostaria de utilizar em um novo trabalho?"
+  },
+  {
+    "type": "human",
+    "content": "eu quero ganhar mais dinheiro, gosto de computador"
+  },
+  {
+    "type": "ai",
+    "content": "Entendo, Lucas. Ganhar mais dinheiro é um objetivo comum para muitas pessoas, e trabalhar com computadores pode ser uma ótima opção.\n\nExistem muitas áreas relacionadas a computadores que podem oferecer salários mais altos, como desenvolvimento de software, análise de dados, segurança cibernética, entre outras.\n\nVocê gostaria de fazer cursos ou treinamentos para se qualificar em uma dessas áreas? Ou você já tem alguma experiência ou conhecimento em programação, design gráfico, redes de computadores, etc.?\n\nAlém disso, você prefere fazer cursos ou treinamentos presenciais ou virtuais? Você tem disponibilidade para estudar em"
+  },
+  {
+    "type": "human",
+    "content": "não tenho experiência, eu precisaria fazer algum curso sim"
+  },
+  {
+    "type": "ai",
+    "content": "Entendo, Lucas. Fazer cursos ou treinamentos é uma ótima maneira de adquirir habilidades e conhecimentos em uma nova área.\n\nExistem muitos cursos e treinamentos online que podem ser feitos à distância, o que pode ser conveniente para você. Além disso, há também opções de cursos presenciais em instituições de ensino.\n\nVocê tem alguma preferência por cursos ou treinamentos online ou presenciais? E você tem disponibilidade para estudar em horários específicos, como à noite ou nos fins de semana?\n\nAlém disso, você tem algum limite de tempo ou recursos que possam afetar o seu aproveitamento dos"
+  },
+  {
+    "type": "human",
+    "content": "eu gostaria de fazer uma faculdade online, não tenho muito tempo..."
+  },
+  {
+    "type": "ai",
+    "content": "Entendo, Lucas. Fazer uma faculdade online pode ser uma ótima opção para você, especialmente se você não tem muito tempo disponível.\n\nExistem muitas faculdades online que oferecem cursos de tecnologia, como ciência da computação, análise de dados, desenvolvimento de software, entre outros.\n\nVou analisar as opções que se encaixam no seu perfil. Você não precisa se preocupar em procurar por cursos ou faculdades, vou fazer isso por você.\n\nObrigado pelas informações, vou analisar as oportunidades que se encaixam no seu perfil!"
+  }
+]
