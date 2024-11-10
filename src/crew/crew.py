@@ -14,22 +14,27 @@ from dotenv import load_dotenv
 import urllib.parse
 import datetime
 
-from groq import Groq
-
-from litellm import LiteLLM
-
-
-
+from litellm import completion  # Use `chat_completion` instead of `completion`
+from crewai.llm import LLM  # Import LLM from crewai.llm
 
 # Inicialize o cliente Groq com a chave da API
+load_dotenv()
+
 api_key = os.getenv("GROQ_API_KEY")
 if not api_key:
     raise ValueError("A chave de API do Groq não foi encontrada. Verifique se está definida no arquivo .env.")
-client = Groq(api_key=api_key)  # Cliente Groq inicializado aqui
 
-llm_instance = LiteLLM(api_key=api_key)
+# Defina o modelo para o LiteLLM (Groq Llama)
+MODEL_NAME = "groq/llama-3.2-90b-text-preview"
 
-load_dotenv()
+# Função para gerar respostas usando o LiteLLM com o modelo da Groq
+def generate_response(messages):
+    response = completion(
+        model=MODEL_NAME,
+        messages=messages,
+        api_key=api_key,  # Passa a chave da API diretamente aqui
+    )
+    return response
 
 class MongoDBApp:
     def __init__(self):
@@ -264,6 +269,11 @@ class OportunityFinderCrew:
 
     @crew
     def crew(self) -> Crew:
+        # Create an instance of LLM with the correct model and API key
+        llm_instance = LLM(
+            model=MODEL_NAME,
+            api_key=api_key,
+        )
         return Crew(
             agents=[
                 self.user_context_analyzer(),
@@ -279,7 +289,8 @@ class OportunityFinderCrew:
                 self.find_course_opportunities_task(),
                 self.find_professional_development_task(),
             ],
-            manager_llm=llm_instance,  # Passando o LiteLLM corretamente
+            # Use the llm_instance for manager_llm
+            manager_llm=llm_instance,
             process=Process.hierarchical,
             respect_context_window=True,
             memory=True,
