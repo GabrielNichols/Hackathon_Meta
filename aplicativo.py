@@ -37,36 +37,28 @@ if not cohere_api_key:
 
 # Criar a classe de embeddings com a API da Cohere
 class CohereEmbeddings(Embeddings):
-    def __init__(self, api_key, model="embed-english-light-v3.0", input_type="search_query", embedding_types=["float"]):
-        self.client = cohere.ClientV2(api_key)
+    def __init__(self, api_key, model="embed-english-light-v2.0"):
+        self.client = cohere.Client(api_key)
         self.model = model
-        self.input_type = input_type
-        self.embedding_types = embedding_types
-    
+
     def embed_documents(self, texts):
         response = self.client.embed(
             texts=texts,
             model=self.model,
-            input_type=self.input_type,
-            embedding_types=self.embedding_types,
         )
-        return response.embeddings.float  # Alterado aqui
-    
+        return response.embeddings
+
     def embed_query(self, text):
         response = self.client.embed(
             texts=[text],
             model=self.model,
-            input_type=self.input_type,
-            embedding_types=self.embedding_types,
         )
-        return response.embeddings.float[0]  # Alterado aqui
+        return response.embeddings[0]
 
 # Inicialize o modelo de embeddings com o Cohere
 embedding_model = CohereEmbeddings(
     api_key=cohere_api_key,
-    model="embed-multilingual-light-v3.0",  # Escolha o modelo apropriado
-    input_type="search_query",         # Ajuste conforme necessário
-    embedding_types=["float"]          # Tipos de embeddings desejados
+    model="embed-english-light-v2.0",  # Atualizado para um modelo disponível
 )
 
 # Carregar as credenciais do MongoDB
@@ -272,7 +264,13 @@ def mensagem():
     memory.chat_memory.add_ai_message(resposta_chatbot)
     # Salvar memória atualizada
     salvar_memoria(user_id, memory.chat_memory.messages)
-    return jsonify({'resposta': resposta_chatbot})
+    # Verificar se a resposta contém a frase de finalização
+    frase_finalizacao = "Obrigado pelas informações, vou analisar as oportunidades que se encaixam no seu perfil!"
+    mostrar_oportunidades = False
+    if frase_finalizacao in resposta_chatbot:
+        mostrar_oportunidades = True
+        #rodar o crew ai
+    return jsonify({'resposta': resposta_chatbot, 'mostrar_oportunidades': mostrar_oportunidades})
 
 if __name__ == '__main__':
     app.run(debug=True)
