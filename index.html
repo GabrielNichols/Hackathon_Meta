@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap&family=Montserrat:wght@900&display=swap" rel="stylesheet"/>
     <style>
-        /* Estilos Personalizados */
+        /* Custom Styles */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #1a202c;
@@ -38,7 +38,7 @@
         }
         .chat-wrapper {
             display: flex;
-            height: calc(100vh - 100px); /* Altura disponível abaixo do título fixo */
+            height: calc(100vh - 100px);
             max-width: 80%;
             margin: 70px auto 0 auto;
             overflow: hidden;
@@ -125,7 +125,6 @@
             z-index: 1100;
             cursor: pointer;
         }
-        /* Estilos do campo de entrada fixo na parte inferior */
         .input-container {
             position: fixed;
             bottom: 0;
@@ -154,6 +153,24 @@
             background-color: #4f46e5;
             color: white;
         }
+        .opportunity {
+            background-color: #1a202c;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .opportunity h3 {
+            color: #4f46e5;
+            margin-bottom: 5px;
+        }
+        .opportunity p {
+            color: #cbd5e0;
+            margin-bottom: 5px;
+        }
+        .opportunity a {
+            color: #4f46e5;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -169,9 +186,9 @@
     <div class="menu-icon text-white hidden" id="menuIcon">
         <i class="fas fa-bars fa-2x"></i>
     </div>
-    <!-- Título "Elevate" Fixo -->
+    <!-- Fixed Title "Elevate" -->
     <div class="header-title">Elevate</div>
-    <!-- Login Page com espaço compensado -->
+    <!-- Login Page with padded space -->
     <div class="content-padding">
         <div class="flex items-center justify-center min-h-screen" id="loginPage">
             <div class="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -198,18 +215,18 @@
         <div class="chat-wrapper" id="chatWrapper">
             <!-- Chat Content -->
             <div class="chat-container" id="chatContainer">
-                <!-- As mensagens do chat serão inseridas aqui -->
+                <!-- Chat messages will be inserted here -->
             </div>
-            <!-- Novo: Container para as oportunidades -->
+            <!-- Opportunities Container -->
             <div id="opportunitiesContainer">
                 <h2 class="text-2xl font-bold text-center mb-4 text-white">Oportunidades</h2>
                 <div id="opportunitiesContent">
-                    <!-- Conteúdo futuro das oportunidades -->
+                    <!-- Future content of opportunities -->
                     <p class="text-gray-300 text-center">As oportunidades serão exibidas aqui.</p>
                 </div>
             </div>
         </div>
-        <!-- Campo de entrada fixo na parte inferior -->
+        <!-- Fixed input field at the bottom -->
         <div class="input-container">
             <input id="userInput" placeholder="Digite sua mensagem..." type="text" autocomplete="off"/>
             <button id="sendBtn">
@@ -218,7 +235,7 @@
         </div>
     </div>
     <script>
-        // Função para alternar a visibilidade da senha
+        // Function to toggle password visibility
         function togglePassword() {
             const passwordField = document.getElementById('password');
             const toggleEye = document.getElementById('toggleEye');
@@ -302,10 +319,11 @@
                     document.getElementById('chatContainer').appendChild(botBubble);
                     document.getElementById('chatContainer').scrollTop = document.getElementById('chatContainer').scrollHeight;
 
-                    // Verifica se deve mostrar as oportunidades
+                    // Check if should show opportunities
                     if (data.mostrar_oportunidades) {
                         document.getElementById('opportunitiesContainer').classList.remove('hidden');
                         document.getElementById('chatWrapper').classList.add('show-opportunities');
+                        await loadOpportunities();
                     }
 
                 } catch (error) {
@@ -323,7 +341,7 @@
             if (event.key === 'Enter') sendMessage();
         });
 
-        // Função para logout
+        // Function for logout
         document.getElementById('logoutBtn').addEventListener('click', function() {
             document.getElementById('chatbotPage').classList.add('hidden');
             document.getElementById('loginPage').classList.remove('hidden');
@@ -335,21 +353,62 @@
             document.getElementById('chatWrapper').classList.remove('show-opportunities');
         });
 
-        // Função para alternar o menu lateral
+        // Function to toggle the sidebar menu
         document.getElementById('menuIcon').addEventListener('click', function() {
             document.getElementById('sidebar').classList.toggle('open');
         });
 
-        // Função para o botão "Chat" no menu lateral
+        // Function for "Chat" button in the sidebar
         document.getElementById('chatBtn').addEventListener('click', function() {
             document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('opportunitiesContainer').classList.add('hidden');
+            document.getElementById('chatWrapper').classList.remove('show-opportunities');
         });
 
-        // Função para o botão "Recomendações" no menu lateral
+        // Function for "Recomendações" button in the sidebar
         document.getElementById('recommendationsBtn').addEventListener('click', function() {
-            alert("Funcionalidade de Recomendações ainda não implementada.");
             document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('opportunitiesContainer').classList.remove('hidden');
+            document.getElementById('chatWrapper').classList.add('show-opportunities');
+            loadOpportunities();
         });
+
+        // Function to load opportunities
+        async function loadOpportunities() {
+            const userId = localStorage.getItem('userId');
+            try {
+                const response = await fetch("http://127.0.0.1:5000/oportunidades", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ user_id: userId })
+                });
+                const data = await response.json();
+                const opportunitiesContent = document.getElementById('opportunitiesContent');
+                opportunitiesContent.innerHTML = ''; // Clear previous content
+                if (data.oportunidades && data.oportunidades.length > 0) {
+                    data.oportunidades.forEach(op => {
+                        const opDiv = document.createElement('div');
+                        opDiv.classList.add('opportunity');
+                        const title = document.createElement('h3');
+                        title.textContent = op.titulo;
+                        const description = document.createElement('p');
+                        description.textContent = op.descricao;
+                        const link = document.createElement('a');
+                        link.href = op.link;
+                        link.textContent = 'Saiba mais';
+                        link.target = '_blank';
+                        opDiv.appendChild(title);
+                        opDiv.appendChild(description);
+                        opDiv.appendChild(link);
+                        opportunitiesContent.appendChild(opDiv);
+                    });
+                } else {
+                    opportunitiesContent.innerHTML = '<p class="text-gray-300 text-center">Nenhuma oportunidade encontrada.</p>';
+                }
+            } catch (error) {
+                console.error("Erro ao carregar oportunidades:", error);
+            }
+        }
     </script>
 </body>
 </html>

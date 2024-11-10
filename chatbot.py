@@ -275,8 +275,7 @@ def acionar_agentes():
         # Construct the absolute path to main.py
         current_dir = os.path.dirname(os.path.abspath(__file__))
         src_dir = os.path.join(current_dir, 'src')  # Set to 'src' directory
-        main_py_path = os.path.join(src_dir, 'crew', 'main.py')
-        
+        main_py_path = os.path.join(src_dir, 'crew', 'main.py')        
         # Verify if main.py exists at the constructed path
         if not os.path.isfile(main_py_path):
             logging.error(f"main.py não encontrado no caminho: {main_py_path}")
