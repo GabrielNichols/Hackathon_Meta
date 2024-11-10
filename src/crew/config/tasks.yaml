@@ -1,0 +1,29 @@
+collect_user_context_task:
+  description: >
+    Analisar o banco de dados para obter o contexto de informações do usuário vetorizado.
+  expected_output: >
+    Contexto detalhado para que os agentes possam buscar e sugerir oportunidades personalizadas e relevantes para o usuário.
+
+find_job_opportunities_task:
+  description: >
+    Utilizar o contexto vetorizado do usuário para identificar e listar oportunidades de emprego que correspondam ao seu perfil e interesses.
+  expected_output: >
+    Uma lista organizada de oportunidades de emprego personalizadas e relevantes para o usuário.
+
+find_event_opportunities_task:
+  description: >
+    Utilizar o contexto do usuário para encontrar e listar eventos que possam contribuir para seu desenvolvimento pessoal e profissional.
+  expected_output: >
+    Uma lista organizada de eventos relevantes para o desenvolvimento pessoal e profissional do usuário.
+
+find_course_opportunities_task:
+  description: >
+    Buscar e listar cursos que atendam às necessidades e interesses educacionais do usuário, com base em seu contexto.
+  expected_output: >
+    Uma lista organizada de cursos educacionais relevantes para o usuário.
+
+find_professional_development_task:
+  description: >
+    Identificar e listar oportunidades de desenvolvimento profissional, como programas de mentoria e workshops, que se alinhem com os objetivos do usuário.
+  expected_output: >
+    Uma lista organizada de oportunidades de desenvolvimento profissional relevantes para o usuário.
